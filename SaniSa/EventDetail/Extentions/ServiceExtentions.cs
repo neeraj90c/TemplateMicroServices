@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 
-namespace EventMaster.Extentions
+namespace EventDetail.Extentions
 {
     public static class ServiceExtentions
     {
@@ -39,7 +39,7 @@ namespace EventMaster.Extentions
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Event Master API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Event Detail API", Version = "v1" });
                 //c.IncludeXmlComments(XmlCommentsFilePath("AuthenticationService.xml"));
             });
 
