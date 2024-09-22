@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 
-namespace CategoryMaster.Extentions
+namespace CategoryDetail.Extentions
 {
     public static class ServiceExtentions
     {
@@ -39,7 +39,7 @@ namespace CategoryMaster.Extentions
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Category Master API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Category Detail API", Version = "v1" });
                 //c.IncludeXmlComments(XmlCommentsFilePath("AuthenticationService.xml"));
             });
 
