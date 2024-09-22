@@ -9,5 +9,7 @@ namespace EventDetail.Interface
         Task<EventDetailResponseDTO> Delete(EventDetailDeleteRequestDTO request);
         Task<EventDetailList> ReadAll();
         Task<EventDetailResponseDTO> ReadById(EventDetailReadByIdRequestDTO request);
+        Task<EventDetailList> ReadByEventId(EventdetailReadByEventIdRequestDTO request);
+
     }
 }

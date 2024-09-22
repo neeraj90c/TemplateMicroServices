@@ -17,6 +17,8 @@ namespace EventDetail.Service
         private const string SP_EventDetail_Delete = "EventDetail_Delete";
         private const string SP_EventDetail_ReadAll = "EventDetail_ReadAll";
         private const string SP_EventDetail_ReadByEDetailId = "EventDetail_ReadByEDetailId";
+        private const string SP_EventDetail_ReadByEventId = "EventDetail_ReadByEventId";
+
 
         private ILogger<EventDetailService> _logger;
         public EventDetailService(IOptions<ConnectionSettings> connectionSettings, ILogger<EventDetailService> logger) : base(connectionSettings.Value.AppKeyPath)
@@ -82,6 +84,28 @@ namespace EventDetail.Service
                 {
                     response.EventList = await connection.QueryAsync<EventDetailResponseDTO>(SP_EventDetail_ReadAll, new
                     {
+                    }, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
+            return response;
+        }
+
+        public async Task<EventDetailList> ReadByEventId(EventdetailReadByEventIdRequestDTO request)
+        {
+            EventDetailList response = new EventDetailList();
+            _logger.LogInformation($"Started Fetching Event Detail List by EventId : {request.EventId} ");
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                {
+                    response.EventList = await connection.QueryAsync<EventDetailResponseDTO>(SP_EventDetail_ReadByEventId, new
+                    {
+                        EventId = request.EventId
                     }, commandType: CommandType.StoredProcedure);
                 }
             }

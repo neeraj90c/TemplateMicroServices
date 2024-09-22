@@ -101,5 +101,18 @@ namespace EventDetail.Controllers
 
             return Ok(response);
         }
+        [HttpGet("ReadByEventId")]
+        public async Task<IActionResult> ReadByEventId(EventdetailReadByEventIdRequestDTO requestDTO)
+        {
+            EventDetailList response = new EventDetailList();
+            response = await mediator.Send(new EventDetailReadByEventIdCommand
+            {
+            });
+
+            if (response == null)
+                return Ok(APIResponse<string>.Unauthorized("Please check login credentials"));
+
+            return Ok(response);
+        }
     }
 }
