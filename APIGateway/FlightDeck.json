@@ -1,0 +1,23 @@
+﻿{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/auth/Authorization/GenerateUserCredentials",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6005
+        }
+      ],
+      "UpstreamPathTemplate": "/auth/GenerateUserCredentials",
+      "UpstreamHttpMethod": [ "Post" ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:5000",
+    "RateLimiOptions": {
+      "QuotaExceededMessage": "Request not allowed, quota exceeded",
+      "HttpStatusCode": 909
+    }
+  }
+}

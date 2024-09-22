@@ -1,0 +1,37 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "taskestimate": "StartDebugging",
+        "projecttemplate": "StartDebugging",
+        "templateclone": "StartDebugging",
+        "templatedetail": "StartDebugging",
+        "templatedetaildependency": "StartDebugging",
+        "templatedetailgroupmapping": "StartDebugging",
+        "templatemilestone": "StartDebugging",
+        "templatephasegate": "StartDebugging",
+        "usergroup": "StartDebugging",
+        "encryptdecryptservice": "StartDebugging",
+        "detail": "StartDebugging",
+        "master": "StartDebugging",
+        "maxproductitemmaster": "StartDebugging",
+        "productitemmaster": "StartDebugging",
+        "repmaster": "StartDebugging",
+        "valuelist": "StartDebugging",
+        "valuelistitem": "StartDebugging",
+        "authenticationservice": "StartDebugging",
+        "azureauth": "StartDebugging",
+        "menuservice": "StartDebugging",
+        "rolesservice": "StartDebugging",
+        "usermaster": "StartDebugging",
+        "projectmaster": "StartDebugging",
+        "projectdetail": "StartDebugging",
+        "securitygroup": "StartDebugging",
+        "usersecuritygroupmapping": "StartDebugging",
+        "templatetasksecuritygroupmapping": "StartDebugging"
+      }
+    }
+  }
+}
