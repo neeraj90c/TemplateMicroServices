@@ -3,7 +3,7 @@
     public static class AppExtension
     {
         private const string SwaggerJson = "v1/swagger.json";
-        private const string DescriptiveName = "Image Master API";
+        private const string DescriptiveName = "Category Master API";
 
         /// <summary>
         /// Add middleware which require to in middleware pipeline before routing data collected
