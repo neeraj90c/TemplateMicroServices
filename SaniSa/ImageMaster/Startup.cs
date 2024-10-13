@@ -49,11 +49,6 @@ namespace ImageMaster
             app.UseMiddleWareBefore();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Client/Images")),
-                RequestPath = "/Client/Images"
-            });
 
             app.UseRouting();
             app.UseRequestLogging();
