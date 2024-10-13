@@ -106,7 +106,7 @@ namespace EventMaster.Service
             {
                 using (SqlConnection connection = new SqlConnection(ConnectionString))
                 {
-                    response.List = await connection.QueryAsync<EventMasterResponseDTO>(SP_EventMaster_ReadAll, new
+                    response.Items = await connection.QueryAsync<EventMasterResponseDTO>(SP_EventMaster_ReadAll, new
                     {
                     }, commandType: CommandType.StoredProcedure);
                 }

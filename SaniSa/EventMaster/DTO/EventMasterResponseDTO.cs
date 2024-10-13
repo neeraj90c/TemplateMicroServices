@@ -18,6 +18,6 @@
     }
     public class EventList
     {
-        public IEnumerable<EventMasterResponseDTO>? List { get; set; }
+        public IEnumerable<EventMasterResponseDTO>? Items { get; set; }
     }
 }
