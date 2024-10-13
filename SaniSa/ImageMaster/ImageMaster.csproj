@@ -22,4 +22,14 @@
     <ProjectReference Include="..\..\Common\Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\Client\Images\638620946587237004.png" />
+    <None Include="wwwroot\Client\Images\638620973685060193.png" />
+    <None Include="wwwroot\Client\Images\638644318250888387.jpeg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Client\Files\" />
+  </ItemGroup>
+
 </Project>

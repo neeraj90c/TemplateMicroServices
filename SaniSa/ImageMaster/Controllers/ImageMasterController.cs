@@ -22,7 +22,7 @@ namespace ImageMaster.Controllers
             _encryptDecrypt = encryptDecrypt;
             _webHostEnvironment = webHostEnvironment;
 
-            SessionObj.WebRootPath = _webHostEnvironment.ContentRootPath;
+            SessionObj.WebRootPath = _webHostEnvironment.WebRootPath;
         }
         [HttpGet("healthCheck")]
         public async Task<IActionResult> HealthCheck()
