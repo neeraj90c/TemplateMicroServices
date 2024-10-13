@@ -81,7 +81,7 @@ namespace ImageMaster.Controllers
         public async Task<IActionResult> ReadByMasterId([FromBody] ImageMasterReadByMasterIdRequestDTO requestDTO)
         {
 
-            ImageMasterDTO response = new ImageMasterDTO();
+            ImageMasterList response = new ImageMasterList();
             response = await mediator.Send(new ImageMasterReadByMasterIdCommand
             {
                 reqDTO = requestDTO

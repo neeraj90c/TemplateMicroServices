@@ -9,7 +9,7 @@ namespace ImageMaster.Interface
         Task<ImageMasterDTO> Update(ImageMasterUpdateRequestDTO reqDTO);
         Task Delete(ImageMasterDeleteRequestDTO reqDTO);
         Task<ImageMasterDTO> ReadById(ImageMasterReadByIdRequestDTO reqDTO);
-        Task<ImageMasterDTO> ReadByMasterId(ImageMasterReadByMasterIdRequestDTO reqDTO);
+        Task<ImageMasterList> ReadByMasterId(ImageMasterReadByMasterIdRequestDTO reqDTO);
         Task<ImageMasterList> ReadAll();
     }
 }

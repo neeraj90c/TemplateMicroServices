@@ -192,15 +192,15 @@ namespace ImageMaster.Service
             return retObj;
         }
 
-        public async Task<ImageMasterDTO> ReadByMasterId(ImageMasterReadByMasterIdRequestDTO reqDTO)
+        public async Task<ImageMasterList> ReadByMasterId(ImageMasterReadByMasterIdRequestDTO reqDTO)
         {
 
-            ImageMasterDTO retObj = null;
+            ImageMasterList retObj = new ImageMasterList();
             _logger.LogInformation($"Started Item Images ReadById {reqDTO.MasterId}");
 
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
-                retObj = await connection.QuerySingleAsync<ImageMasterDTO>(SP_ImageMaster_ReadByMasterId, new
+                retObj.Items = await connection.QueryAsync<ImageMasterDTO>(SP_ImageMaster_ReadByMasterId, new
                 {
                     MasterId = reqDTO.MasterId,
                     MasterType = reqDTO.MasterType

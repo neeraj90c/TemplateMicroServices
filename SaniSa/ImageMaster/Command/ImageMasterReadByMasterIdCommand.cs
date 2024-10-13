@@ -4,12 +4,12 @@ using MediatR;
 
 namespace ImageMaster.Command
 {
-    public class ImageMasterReadByMasterIdCommand : IRequest<ImageMasterDTO>
+    public class ImageMasterReadByMasterIdCommand : IRequest<ImageMasterList>
     {
         public ImageMasterReadByMasterIdRequestDTO reqDTO { get; set; }
     }
 
-    internal class ImageMasterReadByItemIdCommandHandler : IRequestHandler<ImageMasterReadByMasterIdCommand, ImageMasterDTO>
+    internal class ImageMasterReadByItemIdCommandHandler : IRequestHandler<ImageMasterReadByMasterIdCommand, ImageMasterList>
     {
         protected readonly IImageMaster _imageMaster;
         public ImageMasterReadByItemIdCommandHandler(IImageMaster itemImages)
@@ -17,7 +17,7 @@ namespace ImageMaster.Command
             _imageMaster = itemImages;
         }
 
-        public async Task<ImageMasterDTO> Handle(ImageMasterReadByMasterIdCommand request, CancellationToken cancellationToken)
+        public async Task<ImageMasterList> Handle(ImageMasterReadByMasterIdCommand request, CancellationToken cancellationToken)
         {
             return await _imageMaster.ReadByMasterId(request.reqDTO);
         }
