@@ -19,7 +19,7 @@ namespace ImageMaster.Service
         private const string SP_ImageMaster_Delete = "ImageMaster_Delete";
         private const string SP_ImageMaster_ReadAll = "ImageMaster_ReadAll";
         private const string SP_ImageMaster_ReadById = "ImageMaster_ReadById";
-        private const string SP_ImageMaster_ReadByItemId = "ImageMaster_ReadByItemId";
+        private const string SP_ImageMaster_ReadByMasterId = "ImageMaster_ReadByMasterId";
         private const string SP_ImageMaster_Update = "ImageMaster_Update";
         private readonly string _WebRootPath;
         private ILogger<ImageMasterService> _logger;
@@ -200,7 +200,7 @@ namespace ImageMaster.Service
 
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
-                retObj = await connection.QuerySingleAsync<ImageMasterDTO>(SP_ImageMaster_ReadByItemId, new
+                retObj = await connection.QuerySingleAsync<ImageMasterDTO>(SP_ImageMaster_ReadByMasterId, new
                 {
                     MasterId = reqDTO.MasterId,
                     MasterType = reqDTO.MasterType
