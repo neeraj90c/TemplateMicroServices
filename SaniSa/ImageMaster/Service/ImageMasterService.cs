@@ -94,7 +94,7 @@ namespace ImageMaster.Service
             if (!string.IsNullOrWhiteSpace(reqDTO.IURL))
             {
                 var fileName = Path.Combine(uploadPath, filename);
-                filepath = await Utilities.SaveFileFromBase64Async(SessionObj.WebRootPath, fileName, reqDTO.IURL);
+                filepath = await Utilities.SaveFileFromBase64Async(_settings.ImageUploadPath, fileName, reqDTO.IURL);
             }
             else
             {
@@ -241,7 +241,7 @@ namespace ImageMaster.Service
 
             // Generate a unique filename if imageName is not provided
             var fileName = string.IsNullOrEmpty(imageName) ? $"{Guid.NewGuid()}.png" : imageName;
-            var filePath = Path.Combine(_WebRootPath + _settings.UploadPath, fileName);
+            var filePath = Path.Combine(_settings.UploadPath, fileName);
 
             // Save image to disk
             await File.WriteAllBytesAsync(filePath, imageBytes);
