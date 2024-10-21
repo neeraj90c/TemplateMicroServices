@@ -84,21 +84,21 @@ namespace ImageMaster.Service
         public async Task<ImageMasterDTO> Create(ImageMasterCreateRequestDTO reqDTO)
         {
             ImageMasterDTO retObj = null;
-            string filepath = string.Empty;
+            FileSaveResponse filepath = new FileSaveResponse();
 
             // Generate a filename based on current timestamp
-            var filename = DateTime.Now.Ticks.ToString();
+            var filename = DateTime.Now.Ticks.ToString().ToString();
             var uploadPath = _settings.ImageUploadPath;
 
             // Save the file
             if (!string.IsNullOrWhiteSpace(reqDTO.IURL))
             {
-                var fileName = Path.Combine(uploadPath, filename);
-                filepath = await Utilities.SaveFileFromBase64Async(_settings.ImageUploadPath, fileName, reqDTO.IURL);
+                
+                filepath = await Utilities.SaveFileFromBase64Async(uploadPath, filename, reqDTO.IURL);
             }
             else
             {
-                filepath = reqDTO.IURL;
+                filepath.filePath = reqDTO.IURL;
             }
 
             _logger.LogInformation($"Started Item Images Create for MasterId: {reqDTO.MasterId}, ImageName: {reqDTO.IName}");
@@ -111,9 +111,9 @@ namespace ImageMaster.Service
                     {
                         MasterId = reqDTO.MasterId,
                         MasterType = reqDTO.MasterType,
-                        IName = reqDTO.IName,
+                        IName = filepath.fileName,
                         IType = reqDTO.IType,
-                        IURL = filepath,
+                        IURL = filepath.filePath,
                         IsDefault = reqDTO.IsDefault,
                         ActionUser = reqDTO.ActionUser,
                     }, commandType: CommandType.StoredProcedure);

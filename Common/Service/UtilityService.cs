@@ -49,10 +49,11 @@ namespace Common.Service
             return filePath;
         }
 
-        public static async Task<string> SaveFileFromBase64Async(string webRootPath, string filePath, string base64File)
+        public static async Task<FileSaveResponse> SaveFileFromBase64Async(string webRootPath, string filePath, string base64File)
         {
             try
             {
+                FileSaveResponse retObj = new FileSaveResponse();
                 // Split the base64 string to extract the data and the extension
                 var base64Data = base64File.Split(new[] { ";base64," }, StringSplitOptions.None);
                 if (base64Data.Length != 2)
@@ -64,16 +65,16 @@ namespace Common.Service
                 var base64Extension = base64Data[0].Split('/')[1];
 
                 // Combine paths and add extension
-                var fileName = $"{filePath}.{base64Extension}";
-                var fileFullPath = Path.Combine(webRootPath, fileName);
+                retObj.fileName = $"{filePath}.{base64Extension}";
+                retObj.filePath = Path.Combine(webRootPath, retObj.fileName);
 
                 // Delete the file if it already exists
-                if (File.Exists(fileFullPath))
+                if (File.Exists(retObj.filePath))
                 {
-                    File.Delete(fileFullPath);
+                    File.Delete(retObj.filePath);
                 }
 
-                var directoryPath = Path.GetDirectoryName(fileFullPath);
+                var directoryPath = Path.GetDirectoryName(retObj.filePath);
 
                 // Ensure the directory exists
                 if (!Directory.Exists(directoryPath))
@@ -82,9 +83,9 @@ namespace Common.Service
                 }
 
                 // Write the file asynchronously
-                await File.WriteAllBytesAsync(fileFullPath, Convert.FromBase64String(base64String));
+                await File.WriteAllBytesAsync(retObj.filePath, Convert.FromBase64String(base64String));
 
-                return fileName;
+                return retObj;
             }
             catch (Exception ex)
             {
