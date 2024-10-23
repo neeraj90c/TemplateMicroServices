@@ -117,5 +117,21 @@ namespace CategoryDetail.Controllers
             return Ok(response);
         }
 
+        [HttpPost("ReadByItemId")]
+        public async Task<IActionResult> ReadByItemId([FromBody] CategoryDetailReadByItemIdRequestDTO requestDTO)
+        {
+
+            CategoryDetailList response = new CategoryDetailList();
+            response = await mediator.Send(new CategoryDetailReadByItemIdCommand
+            {
+                reqDTO = requestDTO
+            });
+
+            if (response == null)
+                return Ok(APIResponse<string>.Unauthorized("Please check login credentials"));
+
+            return Ok(response);
+        }
+
     }
 }

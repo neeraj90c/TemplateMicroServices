@@ -132,5 +132,22 @@ namespace CategoryDetail.Service
 
             return retObj;
         }
+        public async Task<CategoryDetailList> ReadByItemId(CategoryDetailReadByItemIdRequestDTO reqDTO)
+        {
+
+            CategoryDetailList retObj = new CategoryDetailList();
+            _logger.LogInformation($"Started Category Detail ReadByCategoryId {reqDTO.ItemId}");
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                retObj.Items = await connection.QueryAsync<CategoryDetailDTO>(SP_CategoryDetail_ReadByItemId, new
+                {
+                    ItemId = reqDTO.ItemId,
+                }, commandType: CommandType.StoredProcedure);
+
+            }
+
+            return retObj;
+        }
     }
 }

@@ -10,5 +10,6 @@ namespace CategoryDetail.Interface
         Task<CategoryDetailDTO> ReadById(CategoryDetailReadByIdRequestDTO reqDTO);
         Task<CategoryDetailList> ReadByCategoryId(CategoryDetailReadByCategoryIdRequestDTO reqDTO);
         Task<CategoryDetailList> ReadAll();
+        Task<CategoryDetailList> ReadByItemId(CategoryDetailReadByItemIdRequestDTO reqDTO);
     }
 }
