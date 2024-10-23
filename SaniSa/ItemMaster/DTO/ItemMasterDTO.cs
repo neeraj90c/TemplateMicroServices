@@ -22,6 +22,8 @@ namespace ItemMaster.DTO
         public DateTime? ModifiedOn { get; set; }
         public string? ImagePath {  get; set; }
         public decimal MRP {  get; set; }
+        public string? BName { get; set; }
+        public int? DetailId { get; set; }
     }
     public class ItemMasterList
     {

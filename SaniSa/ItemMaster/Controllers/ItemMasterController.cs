@@ -149,5 +149,21 @@ namespace ItemMaster.Controllers
             return Ok(response);
         }
 
+        [HttpPost("ReadByCategoryId")]
+        public async Task<IActionResult> ReadByCategoryId([FromBody] ItemMasterReadByCategoryIdRequestDTO requestDTO)
+        {
+
+            ItemMasterList response = new ItemMasterList();
+            response = await mediator.Send(new ItemMasterReadByCategoryIdCommand
+            {
+                reqDTO = requestDTO
+            });
+
+            if (response == null)
+                return Ok(APIResponse<string>.Unauthorized("Please check login credentials"));
+
+            return Ok(response);
+        }
+
     }
 }

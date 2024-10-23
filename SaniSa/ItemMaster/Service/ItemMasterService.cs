@@ -19,6 +19,7 @@ namespace ItemMaster.Service
         private const string SP_ItemMaster_Update = "ItemMaster_Update";
         private const string SP_ItemMaster_ReadAllPaginated = "ItemMaster_ReadAllPaginated";
         private const string SP_ItemMaster_SearchByName = "ItemMaster_SearchByName";
+        private const string SP_ItemMaster_ReadByCategoryId = "ItemMaster_ReadByCategoryId";
         private ILogger<ItemMasterService> _logger;
         public ItemMasterService(IOptions<ConnectionSettings> connectionSettings, ILogger<ItemMasterService> logger) : base(connectionSettings.Value.AppKeyPath)
         {
@@ -181,6 +182,25 @@ namespace ItemMaster.Service
 
             return retObj;
         }
+
+        public async Task<ItemMasterList> ReadByCategoryId(ItemMasterReadByCategoryIdRequestDTO reqDTO)
+        {
+
+            ItemMasterList retObj = new ItemMasterList();
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                retObj.Items = await connection.QueryAsync<ItemMasterDTO>(SP_ItemMaster_ReadByCategoryId, new
+                {
+                    CategoryId = reqDTO.CategoryId,
+                }, commandType: CommandType.StoredProcedure);
+
+            }
+
+            return retObj;
+        }
+
+       
 
     }
 }
