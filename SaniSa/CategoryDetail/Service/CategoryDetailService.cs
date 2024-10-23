@@ -102,7 +102,7 @@ namespace CategoryDetail.Service
         public async Task<CategoryDetailList> ReadByCategoryId(CategoryDetailReadByCategoryIdRequestDTO reqDTO)
         {
 
-            CategoryDetailList retObj = null;
+            CategoryDetailList retObj = new CategoryDetailList();
             _logger.LogInformation($"Started Category Detail ReadByCategoryId {reqDTO.CategoryId}");
 
             using (SqlConnection connection = new SqlConnection(ConnectionString))
