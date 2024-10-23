@@ -24,6 +24,8 @@ namespace ItemMaster.DTO
         public decimal MRP {  get; set; }
         public string? BName { get; set; }
         public int? DetailId { get; set; }
+        public string? KName { get; set; }
+
     }
     public class ItemMasterList
     {
