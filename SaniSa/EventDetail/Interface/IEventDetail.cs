@@ -10,6 +10,7 @@ namespace EventDetail.Interface
         Task<EventDetailList> ReadAll();
         Task<EventDetailResponseDTO> ReadById(EventDetailReadByIdRequestDTO request);
         Task<EventDetailList> ReadByEventId(EventdetailReadByEventIdRequestDTO request);
+        Task<EventDetailList> ReadByItemId(EventdetailReadByItemIdRequestDTO request);
 
     }
 }
