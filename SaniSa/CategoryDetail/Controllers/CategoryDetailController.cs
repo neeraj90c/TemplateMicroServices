@@ -80,7 +80,7 @@ namespace CategoryDetail.Controllers
         public async Task<IActionResult> ReadByCategoryId([FromBody] CategoryDetailReadByCategoryIdRequestDTO requestDTO)
         {
 
-            CategoryDetailDTO response = new CategoryDetailDTO();
+            CategoryDetailList response = new CategoryDetailList();
             response = await mediator.Send(new CategoryDetailReadByCategoryIdCommand
             {
                 reqDTO = requestDTO

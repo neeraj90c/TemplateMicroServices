@@ -4,11 +4,11 @@ using MediatR;
 
 namespace CategoryDetail.Command
 {
-    public class CategoryDetailReadByCategoryIdCommand : IRequest<CategoryDetailDTO>
+    public class CategoryDetailReadByCategoryIdCommand : IRequest<CategoryDetailList>
     {
         public CategoryDetailReadByCategoryIdRequestDTO reqDTO { get; set; }
     }
-    internal class CategoryDetailReadByCategoryIdCommandHandler : IRequestHandler<CategoryDetailReadByCategoryIdCommand, CategoryDetailDTO> 
+    internal class CategoryDetailReadByCategoryIdCommandHandler : IRequestHandler<CategoryDetailReadByCategoryIdCommand, CategoryDetailList> 
     {
         protected readonly ICategoryDetail _CategoryDetail;
         public CategoryDetailReadByCategoryIdCommandHandler(ICategoryDetail CategoryDetail)
@@ -16,7 +16,7 @@ namespace CategoryDetail.Command
             _CategoryDetail = CategoryDetail;
         }
 
-        public async Task<CategoryDetailDTO> Handle(CategoryDetailReadByCategoryIdCommand request, CancellationToken cancellationToken)
+        public async Task<CategoryDetailList> Handle(CategoryDetailReadByCategoryIdCommand request, CancellationToken cancellationToken)
         {
             return await _CategoryDetail.ReadByCategoryId(request.reqDTO);
         }

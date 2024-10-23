@@ -16,6 +16,7 @@ namespace CategoryDetail.Service
         private const string SP_CategoryDetail_ReadByCategoryId = "CategoryDetail_ReadByCategoryId";
         private const string SP_CategoryDetail_ReadById = "CategoryDetail_ReadById";
         private const string SP_CategoryDetail_Update = "CategoryDetail_Update";
+        private const string SP_CategoryDetail_ReadByItemId = "CategoryDetail_ReadByItemId";
 
         private ILogger<CategoryDetailService> _logger;
 
@@ -98,15 +99,15 @@ namespace CategoryDetail.Service
 
             return retObj;
         }
-        public async Task<CategoryDetailDTO> ReadByCategoryId(CategoryDetailReadByCategoryIdRequestDTO reqDTO)
+        public async Task<CategoryDetailList> ReadByCategoryId(CategoryDetailReadByCategoryIdRequestDTO reqDTO)
         {
 
-            CategoryDetailDTO retObj = null;
+            CategoryDetailList retObj = null;
             _logger.LogInformation($"Started Category Detail ReadByCategoryId {reqDTO.CategoryId}");
 
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
-                retObj = await connection.QuerySingleAsync<CategoryDetailDTO>(SP_CategoryDetail_ReadByCategoryId, new
+                retObj.Items = await connection.QueryAsync<CategoryDetailDTO>(SP_CategoryDetail_ReadByCategoryId, new
                 {
                     CategoryId = reqDTO.CategoryId,
                 }, commandType: CommandType.StoredProcedure);

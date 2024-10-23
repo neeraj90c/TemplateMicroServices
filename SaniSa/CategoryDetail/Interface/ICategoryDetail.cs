@@ -8,7 +8,7 @@ namespace CategoryDetail.Interface
         Task<CategoryDetailDTO> Update(CategoryDetailUpdateRequestDTO reqDTO);
         Task Delete(CategoryDetailDeleteRequestDTO reqDTO);
         Task<CategoryDetailDTO> ReadById(CategoryDetailReadByIdRequestDTO reqDTO);
-        Task<CategoryDetailDTO> ReadByCategoryId(CategoryDetailReadByCategoryIdRequestDTO reqDTO);
+        Task<CategoryDetailList> ReadByCategoryId(CategoryDetailReadByCategoryIdRequestDTO reqDTO);
         Task<CategoryDetailList> ReadAll();
     }
 }
