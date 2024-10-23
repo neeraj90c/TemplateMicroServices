@@ -82,7 +82,7 @@ namespace EventDetail.Service
             {
                 using (SqlConnection connection = new SqlConnection(ConnectionString))
                 {
-                    response.EventList = await connection.QueryAsync<EventDetailResponseDTO>(SP_EventDetail_ReadAll, new
+                    response.Items = await connection.QueryAsync<EventDetailResponseDTO>(SP_EventDetail_ReadAll, new
                     {
                     }, commandType: CommandType.StoredProcedure);
                 }
@@ -103,7 +103,7 @@ namespace EventDetail.Service
             {
                 using (SqlConnection connection = new SqlConnection(ConnectionString))
                 {
-                    response.EventList = await connection.QueryAsync<EventDetailResponseDTO>(SP_EventDetail_ReadByEventId, new
+                    response.Items = await connection.QueryAsync<EventDetailResponseDTO>(SP_EventDetail_ReadByEventId, new
                     {
                         EventId = request.EventId
                     }, commandType: CommandType.StoredProcedure);
