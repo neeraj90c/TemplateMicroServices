@@ -175,7 +175,7 @@ namespace EventDetail.Service
                 {
                     response.Items = await connection.QueryAsync<EventDetailResponseDTO>(SP_EventDetail_ReadByItemId, new
                     {
-                        EventId = request.ItemId
+                        ItemId = request.ItemId
                     }, commandType: CommandType.StoredProcedure);
                 }
             }
