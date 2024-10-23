@@ -133,5 +133,21 @@ namespace ItemMaster.Controllers
             return Ok(response);
         }
 
+        [HttpPost("SearchByName")]
+        public async Task<IActionResult> SearchByName([FromBody] ItemMasterSearchByNameRequestDTO requestDTO)
+        {
+
+            ItemMasterList response = new ItemMasterList();
+            response = await mediator.Send(new ItemMasterSearchByNameCommand
+            {
+                reqDTO = requestDTO
+            });
+
+            if (response == null)
+                return Ok(APIResponse<string>.Unauthorized("Please check login credentials"));
+
+            return Ok(response);
+        }
+
     }
 }

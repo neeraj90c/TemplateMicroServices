@@ -18,6 +18,7 @@ namespace ItemMaster.Service
         private const string SP_ItemMaster_ReadByKitId = "ItemMaster_ReadByKitId";
         private const string SP_ItemMaster_Update = "ItemMaster_Update";
         private const string SP_ItemMaster_ReadAllPaginated = "ItemMaster_ReadAllPaginated";
+        private const string SP_ItemMaster_SearchByName = "ItemMaster_SearchByName";
         private ILogger<ItemMasterService> _logger;
         public ItemMasterService(IOptions<ConnectionSettings> connectionSettings, ILogger<ItemMasterService> logger) : base(connectionSettings.Value.AppKeyPath)
         {
@@ -156,6 +157,24 @@ namespace ItemMaster.Service
                 {
                     PageSize = reqDTO.PageSize,
                     PageNo = reqDTO.PageNo,
+                }, commandType: CommandType.StoredProcedure);
+
+            }
+
+            return retObj;
+        }
+
+        public async Task<ItemMasterList> SearchByName(ItemMasterSearchByNameRequestDTO reqDTO)
+        {
+
+            ItemMasterList retObj = new ItemMasterList();
+            _logger.LogInformation($"Started Item Master ReadByKitId {reqDTO.SearchTerm}");
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                retObj.Items = await connection.QueryAsync<ItemMasterDTO>(SP_ItemMaster_SearchByName, new
+                {
+                    SearchTerm = reqDTO.SearchTerm,
                 }, commandType: CommandType.StoredProcedure);
 
             }

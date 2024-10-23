@@ -12,5 +12,6 @@ namespace ItemMaster.Interface
         Task<ItemMasterList> ReadAll();
         Task<ItemMasterList> ReadAllPaginated(ItemMasterReadAllPaginatedRequestDTO reqDTO);
         Task<ItemMasterList> ReadByKitId(ItemMasterReadByKitIdRequestDTO reqDTO);
+        Task<ItemMasterList> SearchByName(ItemMasterSearchByNameRequestDTO reqDTO);
     }
 }
