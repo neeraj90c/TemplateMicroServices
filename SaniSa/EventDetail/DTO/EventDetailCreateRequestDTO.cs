@@ -6,7 +6,6 @@ namespace EventDetail.DTO
     {
         public int EventId { get; set; }
         public int ItemId { get; set; }
-	    public int CompanyId { get; set; }
         public string? ActionUser { get; set; }
     }
 }

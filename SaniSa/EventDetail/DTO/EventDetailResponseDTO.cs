@@ -5,7 +5,6 @@
         public int EDetailId { get; set; }
         public int EventId { get; set; }
         public int ItemId { get; set; }
-        public int CompanyId { get; set; }
         public int IsActive {  get; set; }
         public int IsDeleted { get; set; }
         public string? CreatedBy { get; set; }

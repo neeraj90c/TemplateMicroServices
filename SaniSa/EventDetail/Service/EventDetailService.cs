@@ -38,7 +38,6 @@ namespace EventDetail.Service
                     {
                         EventId    = request.EventId,
                         ItemId   =  request.ItemId,
-                        CompanyId = request.CompanyId,
                         ActionUser = request.ActionUser,
                     }, commandType: CommandType.StoredProcedure);
                 }
