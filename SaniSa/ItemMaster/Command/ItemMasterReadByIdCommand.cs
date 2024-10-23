@@ -4,21 +4,21 @@ using ItemMaster.Interface;
 
 namespace ItemMaster.Command
 {
-    public class ItemMasterReadByCategoryIdCommand : IRequest<ItemMasterList>
+    public class ItemMasterReadByIdCommand : IRequest<ItemMasterDTO>
     {
-        public ItemMasterReadByCategoryIdRequestDTO reqDTO { get; set; }
+        public ItemMasterReadByIdRequestDTO reqDTO { get; set; }
     }
-    internal class ItemMasterReadByCategoryIdHandler : IRequestHandler<ItemMasterReadByCategoryIdCommand, ItemMasterList>
+    internal class ItemMasterReadByIdHandler : IRequestHandler<ItemMasterReadByIdCommand, ItemMasterDTO>
     {
         protected readonly IItemMaster _itemMaster;
 
-        public ItemMasterReadByCategoryIdHandler(IItemMaster itemMaster)
+        public ItemMasterReadByIdHandler(IItemMaster itemMaster)
         {
             _itemMaster = itemMaster;
         }
-        public async Task<ItemMasterList> Handle(ItemMasterReadByCategoryIdCommand request, CancellationToken cancellationToken)
+        public async Task<ItemMasterDTO> Handle(ItemMasterReadByIdCommand request, CancellationToken cancellationToken)
         {
-            return await _itemMaster.ReadByCategoryId(request.reqDTO);
+            return await _itemMaster.ReadById(request.reqDTO);
         }
     }
 }
