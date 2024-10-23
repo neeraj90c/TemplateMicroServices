@@ -20,6 +20,7 @@ namespace ItemMaster.Service
         private const string SP_ItemMaster_ReadAllPaginated = "ItemMaster_ReadAllPaginated";
         private const string SP_ItemMaster_SearchByName = "ItemMaster_SearchByName";
         private const string SP_ItemMaster_ReadByCategoryId = "ItemMaster_ReadByCategoryId";
+        private const string SP_ItemMaster_ReadByEventId = "ItemMaster_ReadByEventId";
         private ILogger<ItemMasterService> _logger;
         public ItemMasterService(IOptions<ConnectionSettings> connectionSettings, ILogger<ItemMasterService> logger) : base(connectionSettings.Value.AppKeyPath)
         {
@@ -200,7 +201,24 @@ namespace ItemMaster.Service
             return retObj;
         }
 
-       
+        public async Task<ItemMasterList> ReadByEventId(ItemMasterReadByEventIdRequestDTO reqDTO)
+        {
+
+            ItemMasterList retObj = new ItemMasterList();
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                retObj.Items = await connection.QueryAsync<ItemMasterDTO>(SP_ItemMaster_ReadByEventId, new
+                {
+                    EventId = reqDTO.EventId,
+                }, commandType: CommandType.StoredProcedure);
+
+            }
+
+            return retObj;
+        }
+
+
 
     }
 }

@@ -14,5 +14,6 @@ namespace ItemMaster.Interface
         Task<ItemMasterList> ReadByKitId(ItemMasterReadByKitIdRequestDTO reqDTO);
         Task<ItemMasterList> SearchByName(ItemMasterSearchByNameRequestDTO reqDTO);
         Task<ItemMasterList> ReadByCategoryId(ItemMasterReadByCategoryIdRequestDTO reqDTO);
+        Task<ItemMasterList> ReadByEventId(ItemMasterReadByEventIdRequestDTO reqDTO);
     }
 }
