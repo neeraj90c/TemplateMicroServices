@@ -32,6 +32,7 @@ namespace KitDetail.Service
             {
                 retObj = await connection.QuerySingleAsync<KitDetailDTO>(SP_KitDetail_Create, new
                 {
+                    KitId = reqDTO.KitId,
                     ItemId = reqDTO.ItemId,
                     Remarks = reqDTO.Remarks,
                     ActionUser = reqDTO.ActionUser,
@@ -52,6 +53,7 @@ namespace KitDetail.Service
                 retObj = await connection.QuerySingleAsync<KitDetailDTO>(SP_KitDetail_Update, new
                 {
                     DetailId = reqDTO.DetailId,
+                    KitId = reqDTO.KitId,
                     ItemId = reqDTO.ItemId,
                     Remarks = reqDTO.Remarks,
                     IsActive = reqDTO.IsActive,
