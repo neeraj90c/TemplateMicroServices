@@ -8,6 +8,7 @@ namespace KitMaster.DTO
         public string? KCode { get; set; }
         public string? KName { get; set; }
         public string? KDescription { get; set; }
+        public decimal? Price { get; set; }
         public int IsActive { get; set; }
         public int IsDeleted { get; set; }
         public string CreatedBy { get; set; }

@@ -35,6 +35,7 @@ namespace KitMaster.Service
                     KCode = reqDTO.KCode,
                     KName = reqDTO.KName,
                     KDescription = reqDTO.KDescription,
+                    Price = reqDTO.Price,
                     ActionUser = reqDTO.ActionUser,
                 }, commandType: CommandType.StoredProcedure);
 
@@ -56,6 +57,7 @@ namespace KitMaster.Service
                     KCode = reqDTO.KCode,
                     KName = reqDTO.KName,
                     KDescription = reqDTO.KDescription,
+                    Price = reqDTO.Price,
                     IsActive = reqDTO.IsActive,
                     ActionUser = reqDTO.ActionUser,
                 }, commandType: CommandType.StoredProcedure);
