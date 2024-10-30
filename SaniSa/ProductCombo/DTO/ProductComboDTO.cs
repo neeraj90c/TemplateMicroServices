@@ -15,6 +15,7 @@ namespace ProductCombo.DTO
         public DateTime CreatedOn { get; set; }
         public string ModifiedBy { get; set; }
         public DateTime? ModifiedOn { get; set; }
+        public int? ItemCount {  get; set; }
     }
     public class ProductComboList
     {

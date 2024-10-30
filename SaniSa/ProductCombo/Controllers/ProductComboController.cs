@@ -102,5 +102,22 @@ namespace ProductCombo.Controllers
             return Ok(response);
         }
 
+
+        [HttpPost("ReadAllPaginated")]
+        public async Task<IActionResult> ReadAllPaginated(ProductComboReadAllPaginatedRequestDTO reqDTO)
+        {
+            //_logger.LogInformation("This is for Graylog Testing");
+            ProductComboList response = new ProductComboList();
+            response = await mediator.Send(new ProductComboReadAllPaginatedCommand
+            {
+                reqDTO = reqDTO
+            });
+
+            if (response == null)
+                return Ok(APIResponse<string>.Unauthorized("Please check login credentials"));
+
+            return Ok(response);
+        }
+
     }
 }

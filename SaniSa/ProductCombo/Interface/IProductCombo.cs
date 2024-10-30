@@ -10,5 +10,6 @@ namespace ProductCombo.Interface
         Task Delete(ProductComboDeleteRequestDTO reqDTO);
         Task<ProductComboDTO> ReadById(ProductComboReadByIdRequestDTO reqDTO);
         Task<ProductComboList> ReadAll();
+        Task<ProductComboList> ReadAllPaginated(ProductComboReadAllPaginatedRequestDTO reqDTO);
     }
 }

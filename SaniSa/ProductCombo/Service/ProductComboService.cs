@@ -16,6 +16,8 @@ namespace ProductCombo.Service
         private const string SP_ProductCombo_ReadAll = "ProductCombo_ReadAll";
         private const string SP_ProductCombo_ReadById = "ProductCombo_ReadById";
         private const string SP_ProductCombo_Update = "ProductCombo_Update";
+        private const string SP_ProductCombo_ReadAllPaginated = "ProductCombo_ReadAllPaginated";
+
         private ILogger<ProductComboService> _logger;
         public ProductComboService(IOptions<ConnectionSettings> connectionSettings, ILogger<ProductComboService> logger) : base(connectionSettings.Value.AppKeyPath)
         {
@@ -108,6 +110,24 @@ namespace ProductCombo.Service
                 retObj.Items = await connection.QueryAsync<ProductComboDTO>(SP_ProductCombo_ReadAll, new
                 {
 
+                }, commandType: CommandType.StoredProcedure);
+
+            }
+
+            return retObj;
+        }
+
+        public async Task<ProductComboList> ReadAllPaginated(ProductComboReadAllPaginatedRequestDTO reqDTO)
+        {
+
+            ProductComboList retObj = new ProductComboList();
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                retObj.Items = await connection.QueryAsync<ProductComboDTO>(SP_ProductCombo_ReadAllPaginated, new
+                {
+                    PageSize = reqDTO.PageSize,
+                    PageNo = reqDTO.PageNo,
                 }, commandType: CommandType.StoredProcedure);
 
             }
