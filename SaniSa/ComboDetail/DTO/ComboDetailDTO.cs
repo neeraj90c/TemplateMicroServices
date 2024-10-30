@@ -6,10 +6,9 @@ namespace ComboDetail.DTO
     {
         public int DetailId { get; set; }
         public int ComboId { get; set; }
+        public int ItemType { get; set; }
         public int ItemId { get; set; }
-        public decimal? ItemPrice { get; set; }
-        public decimal? Units { get; set; }
-        public decimal? TotalAmt { get; set; }
+        public string? Remarks { get; set; }
         public int IsActive { get; set; }
         public int IsDeleted { get; set; }
         public string CreatedBy { get; set; }

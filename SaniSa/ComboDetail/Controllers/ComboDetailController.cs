@@ -46,12 +46,13 @@ namespace ComboDetail.Controllers
 
             return Ok(response);
         }
-        [HttpPost("ReadByItemId")]
-        public async Task<IActionResult> ReadByItemId([FromBody] ComboDetailReadByItemIdRequestDTO requestDTO)
+
+        [HttpPost("Update")]
+        public async Task<IActionResult> Update([FromBody] ComboDetailUpdateRequestDTO requestDTO)
         {
 
             ComboDetailDTO response = new ComboDetailDTO();
-            response = await mediator.Send(new ComboDetailReadByItemIdCommand
+            response = await mediator.Send(new ComboDetailUpdateCommand
             {
                 reqDTO = requestDTO
             });
@@ -61,12 +62,25 @@ namespace ComboDetail.Controllers
 
             return Ok(response);
         }
-        [HttpPost("ReadById")]
-        public async Task<IActionResult> ReadById([FromBody] ComboDetailReadByIdRequestDTO requestDTO)
+
+        [HttpPost("Delete")]
+        public async Task<IActionResult> Delete([FromBody] ComboDetailDeleteRequestDTO requestDTO)
+        {
+
+            await mediator.Send(new ComboDetailDeleteCommand
+            {
+                reqDTO = requestDTO
+            });
+
+            return Ok();
+        }
+
+        [HttpPost("ReadByDetailId")]
+        public async Task<IActionResult> ReadById([FromBody] ComboDetailReadByDetailIdRequestDTO requestDTO)
         {
 
             ComboDetailDTO response = new ComboDetailDTO();
-            response = await mediator.Send(new ComboDetailReadByIdCommand
+            response = await mediator.Send(new ComboDetailReadByDetailIdCommand
             {
                 reqDTO = requestDTO
             });
@@ -91,17 +105,7 @@ namespace ComboDetail.Controllers
 
             return Ok(response);
         }
-        [HttpPost("Delete")]
-        public async Task<IActionResult> Delete([FromBody] ComboDetailDeleteRequestDTO requestDTO)
-        {
-
-            await mediator.Send(new ComboDetailDeleteCommand
-            {
-                reqDTO = requestDTO
-            });
-
-            return Ok();
-        }
+        
         [HttpGet("ReadAll")]
         public async Task<IActionResult> ReadAll()
         {

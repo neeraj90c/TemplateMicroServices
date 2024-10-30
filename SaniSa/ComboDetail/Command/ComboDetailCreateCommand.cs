@@ -8,10 +8,10 @@ namespace ComboDetail.Command
     {
         public ComboDetailCreateRequestDTO reqDTO { get; set; }
     }
-    internal class KitMasterCreateHandler : IRequestHandler<ComboDetailCreateCommand, ComboDetailDTO>
+    internal class ComboDetailCreateCommandHandler : IRequestHandler<ComboDetailCreateCommand, ComboDetailDTO>
     {
         protected readonly IComboDetail _comboDetail;
-        public KitMasterCreateHandler(IComboDetail comboDetail)
+        public ComboDetailCreateCommandHandler(IComboDetail comboDetail)
         {
             _comboDetail = comboDetail;
         }

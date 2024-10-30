@@ -12,11 +12,12 @@ namespace ComboDetail.Service
     public class ComboDetailService : DABase, IComboDetail
     {
         private const string SP_ComboDetail_Create = "ComboDetail_Create";
+        private const string SP_ComboDetail_Update = "ComboDetail_Update";
         private const string SP_ComboDetail_Delete = "ComboDetail_Delete";
         private const string SP_ComboDetail_ReadAll = "ComboDetail_ReadAll";
         private const string SP_ComboDetail_ReadById = "ComboDetail_ReadById";
         private const string SP_ComboDetail_ReadByComboId = "ComboDetail_ReadByComboId";
-        private const string SP_ComboDetail_ReadByItemId = "ComboDetail_ReadByItemId";
+
         private ILogger<ComboDetailService> _logger;
         public ComboDetailService(IOptions<ConnectionSettings> connectionSettings, ILogger<ComboDetailService> logger) : base(connectionSettings.Value.AppKeyPath)
         {
@@ -26,7 +27,7 @@ namespace ComboDetail.Service
         {
 
             ComboDetailDTO retObj = null;
-            _logger.LogInformation($"Started Combo Detail Create {reqDTO.ItemId}  for ItemPrice: {reqDTO.ItemPrice}");
+            _logger.LogInformation($"Started Combo Detail Create {reqDTO.ItemId}  for ItemPrice: {reqDTO.ItemId}");
 
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
@@ -34,9 +35,7 @@ namespace ComboDetail.Service
                 {
                     ComboId = reqDTO.ComboId,
                     ItemId = reqDTO.ItemId,
-                    ItemPrice = reqDTO.ItemPrice,
-                    Units = reqDTO.Units,
-                    TotalAmt = reqDTO.TotalAmt,
+                    Remarks = reqDTO.Remarks,
                     ActionUser = reqDTO.ActionUser,
                 }, commandType: CommandType.StoredProcedure);
 
@@ -44,17 +43,23 @@ namespace ComboDetail.Service
 
             return retObj;
         }
-        public async Task<ComboDetailDTO> ReadByItemId(ComboDetailReadByItemIdRequestDTO reqDTO)
+        public async Task<ComboDetailDTO> Update(ComboDetailUpdateRequestDTO reqDTO)
         {
 
             ComboDetailDTO retObj = null;
-            _logger.LogInformation($"Started Combo Detail ReadByItemId {reqDTO.ItemId}");
+            _logger.LogInformation($"Started Combo Detail Update {reqDTO.DetailId}");
 
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
-                retObj = await connection.QuerySingleAsync<ComboDetailDTO>(SP_ComboDetail_ReadByItemId, new
+                retObj = await connection.QuerySingleAsync<ComboDetailDTO>(SP_ComboDetail_Update, new
                 {
-                    ItemId = reqDTO.ItemId
+                    DetailId = reqDTO.DetailId,
+                    ComboId = reqDTO.ComboId,
+                    ItemType = reqDTO.ItemType,
+                    ItemId = reqDTO.ItemId,
+                    Remarks = reqDTO.Remarks,
+                    IsActive = reqDTO.IsActive,
+                    ActionUser = reqDTO.ActionUser,
                 }, commandType: CommandType.StoredProcedure);
 
             }
@@ -77,7 +82,7 @@ namespace ComboDetail.Service
             }
             //return Task.CompletedTask;
         }
-        public async Task<ComboDetailDTO> ReadById(ComboDetailReadByIdRequestDTO reqDTO)
+        public async Task<ComboDetailDTO> ReadById(ComboDetailReadByDetailIdRequestDTO reqDTO)
         {
 
             ComboDetailDTO retObj = null;

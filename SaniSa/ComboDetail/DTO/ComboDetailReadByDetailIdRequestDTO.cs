@@ -1,6 +1,6 @@
 ﻿namespace ComboDetail.DTO
 {
-    public class ComboDetailReadByIdRequestDTO
+    public class ComboDetailReadByDetailIdRequestDTO
     {
         public int DetailId { get; set; }
     }
