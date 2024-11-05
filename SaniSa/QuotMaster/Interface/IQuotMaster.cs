@@ -11,5 +11,6 @@ namespace QuotMaster.Interface
         Task<QuotMasterDTO> ReadById(QuotMasterReadByIdRequestDTO reqDTO);
         Task<QuotMasterList> ReadAll();
         Task<QuotMasterList> ReadAllPaginated(QuotMasterReadAllPaginatedRequestDTO reqDTO);
+        Task<QuoteSuggestionList> Suggestions(QuoteMasterSuggestionsReq reqDTO);
     }
 }

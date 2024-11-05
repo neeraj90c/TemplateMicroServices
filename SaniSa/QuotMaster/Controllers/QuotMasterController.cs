@@ -114,6 +114,21 @@ namespace QuotMaster.Controllers
 
             return Ok(response);
         }
+        
+        [HttpPost("Suggestions")]
+        public async Task<IActionResult> Suggestions([FromBody] QuoteMasterSuggestionsReq requestDTO)
+        {
 
+            QuoteSuggestionList response = new QuoteSuggestionList();
+            response = await mediator.Send(new QuotMasterSuggestionsCommand
+            {
+                reqDTO = requestDTO
+            });
+
+            if (response == null)
+                return Ok(APIResponse<string>.Unauthorized("Please check login credentials"));
+
+            return Ok(response);
+        }
     }
 }

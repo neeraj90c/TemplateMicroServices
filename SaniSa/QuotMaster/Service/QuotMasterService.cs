@@ -17,6 +17,7 @@ namespace QuotMaster.Service
         private const string SP_QuotMaster_ReadById = "QMaster_ReadById";
         private const string SP_QuotMaster_Update = "QMaster_Update";
         private const string SP_QuotMaster_ReadAllPaginated = "QMaster_ReadAllPaginated";
+        private const string SP_QuotMaster_Suggestions = "QMaster_Suggestions";
         private ILogger<QuotMasterService> _logger;
         public QuotMasterService(IOptions<ConnectionSettings> connectionSettings, ILogger<QuotMasterService> logger) : base(connectionSettings.Value.AppKeyPath)
         {
@@ -142,5 +143,22 @@ namespace QuotMaster.Service
             return retObj;
         }
 
+        public async Task<QuoteSuggestionList> Suggestions(QuoteMasterSuggestionsReq reqDTO)
+        {
+            QuoteSuggestionList retObj = new QuoteSuggestionList();
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                retObj.Items = await connection.QueryAsync<QuoteMasterSuggestionsResponse>(SP_QuotMaster_Suggestions, new
+                {
+                    BudgetPrice = reqDTO.BudgetPrice,
+                    EventId = reqDTO.EventId,
+                    NumberOfItems = reqDTO.NumberOfItems,
+                    NumberOfSuggestions = reqDTO.NumberOfSuggestions
+                }, commandType: CommandType.StoredProcedure);
+
+            }
+
+            return retObj;
+        }
     }
 }
